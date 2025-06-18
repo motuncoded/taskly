@@ -1,0 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap");
+@import "tailwindcss";
+
+body {
+  background-color: #030405;
+  color: #f2f3f4;
+}
