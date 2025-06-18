@@ -17,7 +17,7 @@ const TodoList = () => {
 
   return (
     <main className=" px-6 py-12 ">
-      <h2 className="text-4xl font-bold mb-8 text-blue-400">My Todo List</h2>
+      <h2 className="text-4xl font-bold mb-8 text-blue-400">My Tasks</h2>
 
       {todos.length === 0 ? (
         <p className="text-gray-500">You have no tasks yet.</p>
