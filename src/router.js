@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-router";
 import Home from "./routes/Home";
 import NotFound from "./routes/NotFound";
-import Header from "./components/layouts/Header";
+import TodoList from "./routes/TodoList";
 import Layout from "./components/Layout";
 
 // All routes
@@ -19,6 +19,11 @@ const indexRoute = createRoute({
   path: "/",
   component: Home,
 });
+const todoListRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/todolist",
+  component: TodoList,
+});
 
 const notFoundRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -26,6 +31,10 @@ const notFoundRoute = createRoute({
   component: NotFound,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, notFoundRoute]);
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  todoListRoute,
+  notFoundRoute,
+]);
 
 export const router = createRouter({ routeTree });

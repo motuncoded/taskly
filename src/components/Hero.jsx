@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import AddTaskModal from "./AddTaskModal";
 
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleTaskModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+  const closeTaskModal = () => setIsModalOpen(false);
+  const handleTasksList = () => {
+    // Navigate to the tasks list page
+    window.location.href = "/todolist";
+  };
+
   return (
     <main className=" flex flex-col justify-between">
       {/* Hero Section */}
@@ -12,9 +24,22 @@ const Hero = () => {
           Your simple and efficient task manager to plan, track, and conquer
           your day.
         </p>
-        <button className="bg-blue-600 text-white hover:bg-blue-500 font-semibold px-4 py-2 rounded-xl transition-all duration-300">
-          Create Task
-        </button>
+        <div className="flex justify-center space-x-4">
+          <button
+            type="button"
+            onClick={toggleTaskModal}
+            className="bg-blue-600 text-white hover:bg-blue-500 font-semibold px-4 py-2 rounded-xl transition-all duration-300"
+          >
+            Create Task
+          </button>
+          <button
+            type="button"
+            onClick={handleTasksList}
+            className="border-blue-600 border-2 text-white hover:bg-blue-500 font-semibold px-4 py-2 rounded-xl transition-all duration-300"
+          >
+            View Tasks
+          </button>
+        </div>
       </section>
 
       {/* Features Section */}
@@ -40,6 +65,7 @@ const Hero = () => {
           </div>
         </div>
       </section>
+      {isModalOpen && <AddTaskModal closeTaskModal={closeTaskModal} />}
     </main>
   );
 };
