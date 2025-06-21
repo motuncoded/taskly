@@ -11,12 +11,18 @@ const TodoList = () => {
     setTodos(storedTodos);
   };
 
+  const deleteTodo = async (id) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+    await localforage.setItem("taskly_todos", updatedTodos);
+  };
+
   useEffect(() => {
     loadTodos();
   }, []);
 
   return (
-    <main className=" px-6 py-12 ">
+    <main className=" px-6 py-12 flex flex-col items-center justify-center ">
       <h2 className="text-4xl font-bold mb-8 text-blue-400">My Tasks</h2>
 
       {todos.length === 0 ? (
@@ -40,6 +46,7 @@ const TodoList = () => {
               <div>
                 <button
                   type="button"
+                  onClick={deleteTodo.bind(null, todo.id)}
                   className="text-sm mt-2 inline-block px-2 py-1 rounded-full  text-gray-700"
                 >
                   <GoTrash />
