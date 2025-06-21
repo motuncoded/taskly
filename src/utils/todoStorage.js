@@ -17,3 +17,10 @@ export const saveTodo = async (todo) => {
 export const clearTodos = async () => {
   await localforage.removeItem(TODO_KEY);
 };
+
+
+export const deleteTodo = async (id) => {
+  const todos = await getTodos();
+  const updatedTodos = todos.filter((todo) => todo.id !== id);
+  await localforage.setItem(TODO_KEY, updatedTodos);
+};
